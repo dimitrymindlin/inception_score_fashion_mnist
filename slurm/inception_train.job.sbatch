@@ -1,4 +1,4 @@
-inception_train.job.sh#!/bin/bash
+#!/bin/bash
 #SBATCH --gres=gpu:gtx:1
 #SBATCH --partition=gpu
 #SBATCH --time=24:00:00
