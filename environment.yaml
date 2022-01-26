@@ -1,0 +1,13 @@
+name: inception-score-fashion-mnist
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - tensorflow=2.6.0
+  - tensorflow-gpu=2.6.0
+  - matplotlib
+  - pandas
+  - pip
+  - scikit-image
+  - pip:
+    - tensorflow-datasets==4.4.0
