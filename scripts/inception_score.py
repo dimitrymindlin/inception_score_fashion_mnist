@@ -18,7 +18,7 @@ from models.inception_model import FashionInception
 WEIGHTS_PATH = "checkpoints/inception/best/cp.ckpt"
 
 
-def calc_class_frequency(n_split=10, eps=1E-16):
+def calc_class_frequency(n_split=100, eps=1E-16):
     model = FashionInception(inception_fm_net_config)
     model.load_weights(WEIGHTS_PATH).expect_partial()
     # enumerate splits of images/predictions
@@ -52,7 +52,7 @@ def scale_images(images, new_shape):
 
 
 # assumes images have any shape and pixels in [0,255]
-def calculate_inception_score(images, n_split=10, eps=1E-16):
+def calculate_inception_score(images, n_split=100000, eps=1E-16):
     # load inception v3 model
     model = FashionInception(inception_fm_net_config)
     model.load_weights(WEIGHTS_PATH).expect_partial()
