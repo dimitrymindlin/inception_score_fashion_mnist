@@ -33,7 +33,7 @@ def calc_class_frequency(n_split=100, eps=1E-16):
         # convert from uint8 to float32
         subset = subset.astype('float32')
         # scale images to the required size
-        subset = scale_images(subset, (299, 299, 3))
+        subset = scale_images(subset, (75, 75, 3))
         # pre-process images, scale to [-1,1]
         subset = preprocess_input(subset)
         # predict p(y|x)
