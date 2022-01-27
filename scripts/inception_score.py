@@ -93,7 +93,9 @@ def calculate_inception_score(images, n_split=100000, eps=1E-16):
 images = FashionMNISTInceptionDataset().images
 # shuffle images
 shuffle(images)
+batch_size = 8
+splits = (len(images) + 15 - 1) // batch_size
 print('loaded', images.shape)
 # calculate inception score
-is_avg, is_std = calculate_inception_score(images)
+is_avg, is_std = calculate_inception_score(images, n_split=splits)
 print('score', is_avg, is_std)
