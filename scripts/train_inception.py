@@ -79,3 +79,5 @@ print("Evaluation Result: ", result)
 result_matrix = [[k, str(w)] for k, w in result.items()]
 with file_writer.as_default():
     tf.summary.text("evaluation", tf.convert_to_tensor(result_matrix), step=0)
+
+
