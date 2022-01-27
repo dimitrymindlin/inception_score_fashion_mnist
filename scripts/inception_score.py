@@ -90,6 +90,7 @@ def calculate_inception_score(images, n_split=100000, eps=1E-16):
 
 # load cifar10 images
 # (images, _), (_, _) = cifar10.load_data()
+print("Crunch")
 images = FashionMNISTInceptionDataset().images
 # shuffle images
 shuffle(images)
