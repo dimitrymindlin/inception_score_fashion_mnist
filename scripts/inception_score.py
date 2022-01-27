@@ -15,7 +15,7 @@ from configs.inception_train_config import inception_fm_net_config
 from dataloader.fashion_mnist import FashionMNISTInceptionDataset
 from models.inception_model import FashionInception
 
-WEIGHTS_PATH = "checkpoints/inception_best/cp.ckpt"
+WEIGHTS_PATH = "checkpoints/inception/best/cp.ckpt"
 
 
 def calc_class_frequency():
