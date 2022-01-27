@@ -9,7 +9,7 @@ class FashionMNISTInceptionDataset():
         self.ds_train = self._build_train_pipeline(ds_train, batch_size, buffer_size)
         self.ds_val = self._build_test_pipeline(ds_val, batch_size)
         self.ds_test = self._build_test_pipeline(ds_test, batch_size)
-        self.images = self._images(ds_test)
+        self.images = self._images(ds_train)
 
     def _build_train_pipeline(self, ds, batch_size, buffer_size):
         ds = ds.map(self.preprocess, num_parallel_calls=tf.data.AUTOTUNE)
