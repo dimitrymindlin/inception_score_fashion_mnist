@@ -1,6 +1,6 @@
 # calculate inception score for cifar-10 in Keras
 from math import floor
-from numpy import expand_dims
+from numpy import expand_dims, ones
 from numpy import log
 from numpy import mean
 from numpy import std
@@ -90,7 +90,7 @@ def calculate_inception_score(images, n_split=100000, eps=1E-16):
 
 # load cifar10 images
 # (images, _), (_, _) = cifar10.load_data()
-print("Crunch")
+"""print("Crunch")
 images = FashionMNISTInceptionDataset().images
 # shuffle images
 shuffle(images)
@@ -100,4 +100,10 @@ print(f"Trying to create {splits} splits.")
 print('loaded', images.shape)
 # calculate inception score
 is_avg, is_std = calculate_inception_score(images, n_split=splits)
+print('score', is_avg, is_std)"""
+
+images = ones((50, 299, 299, 3))
+print('loaded', images.shape)
+# calculate inception score
+is_avg, is_std = calculate_inception_score(images)
 print('score', is_avg, is_std)
