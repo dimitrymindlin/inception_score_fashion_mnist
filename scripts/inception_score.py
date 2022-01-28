@@ -88,9 +88,7 @@ def calculate_inception_score(images, n_split=100000, eps=1E-16):
     return is_avg, is_std
 
 
-# load cifar10 images
-# (images, _), (_, _) = cifar10.load_data()
-"""print("Crunch")
+print("Crunch")
 images = FashionMNISTInceptionDataset().images
 # shuffle images
 shuffle(images)
@@ -98,13 +96,6 @@ batch_size = 8
 splits = (len(images) + 15 - 1) // batch_size
 print(f"Trying to create {splits} splits.")
 print('loaded', images.shape)
-# calculate inception score
-is_avg, is_std = calculate_inception_score(images, n_split=splits)
-print('score', is_avg, is_std)"""
-
-images = ones((50, 299, 299, 3))
-print('loaded', images.shape)
-splits = (len(images) + 15 - 1) // 8
 # calculate inception score
 is_avg, is_std = calculate_inception_score(images, n_split=splits)
 print('score', is_avg, is_std)
