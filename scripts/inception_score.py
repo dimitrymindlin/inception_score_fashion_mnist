@@ -104,6 +104,7 @@ print('score', is_avg, is_std)"""
 
 images = ones((50, 299, 299, 3))
 print('loaded', images.shape)
+splits = (len(images) + 15 - 1) // 8
 # calculate inception score
 is_avg, is_std = calculate_inception_score(images)
 print('score', is_avg, is_std)
