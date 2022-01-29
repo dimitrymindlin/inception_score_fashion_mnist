@@ -25,9 +25,7 @@ class FashionMNISTInceptionDataset():
         return ds
 
     def preprocess(self, element):
-        images = (tf.cast(element['image'], tf.float32) - 127.5) / 127.5
-        images = tf.image.grayscale_to_rgb(images)
-        images = tf.image.resize(images, (75, 75))
+        images = tf.cast(element['image'], tf.float32)
         num_classes = 10
         one_hot_labels = tf.one_hot(element['label'], num_classes)
         return images, one_hot_labels
@@ -41,4 +39,4 @@ class FashionMNISTInceptionDataset():
                 label_distribution[tf.get_static_value(example["label"])] = 1
         print(label_distribution)
 
-        return np.concatenate([example['image'] for example in ds], axis=0)
+        return np.asarray([tf.cast(example['image'], tf.float32) for example in ds])

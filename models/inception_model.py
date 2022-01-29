@@ -12,6 +12,8 @@ class FashionInception(tf.keras.Model):
             self.config['data']['image_width'],
             self.config['data']['image_channel']
         )
+        self.resizing_layer = tf.keras.layers.Resizing(self.config['data']['image_height'],
+                                                       self.config['data']['image_width'])
 
         self.img_input = tf.keras.Input(shape=self._input_shape)
         self.base_model = tf.keras.applications.InceptionV3(
@@ -25,6 +27,11 @@ class FashionInception(tf.keras.Model):
         self.classifier = tf.keras.layers.Dense(10, activation="softmax", name="predictions")
 
     def call(self, x):
+        x = self.add_channels(x)
+        x = self.resizing_layer(x)
         x = tf.keras.applications.inception_v3.preprocess_input(x)
         x = self.base_model(x)
         return self.classifier(x)
+
+    def add_channels(self, image):
+        return tf.image.grayscale_to_rgb(image)
