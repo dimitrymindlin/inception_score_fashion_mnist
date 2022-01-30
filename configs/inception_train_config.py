@@ -1,5 +1,6 @@
 inception_fm_net_config = {
     "data": {
+        "input_shape": (75, 75, 3),
         "input_size": (75, 75),
         "image_height": 75,
         "image_width": 75,
