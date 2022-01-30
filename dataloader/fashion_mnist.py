@@ -9,7 +9,7 @@ class FashionMNISTInceptionDataset():
         self.ds_train = self._build_train_pipeline(ds_train, batch_size, buffer_size)
         self.ds_val = self._build_test_pipeline(ds_val, batch_size)
         self.ds_test = self._build_test_pipeline(ds_test, batch_size)
-        self.images = self._images(ds_val)
+        self.images = self._images(ds_test)
 
     def _build_train_pipeline(self, ds, batch_size, buffer_size):
         ds = ds.map(self.preprocess, num_parallel_calls=tf.data.AUTOTUNE)
@@ -37,6 +37,6 @@ class FashionMNISTInceptionDataset():
                 label_distribution[tf.get_static_value(example["label"])] += 1
             except KeyError:
                 label_distribution[tf.get_static_value(example["label"])] = 1
-        print(label_distribution)
+        print("Original Image distribution: ", label_distribution)
 
-        return np.asarray([tf.cast(example['image'], tf.float32) for example in ds])
+        return np.asarray([tf.cast(example['image'], tf.float32) for example in ds if tf.get_static_value(example["label"]) == 0])
