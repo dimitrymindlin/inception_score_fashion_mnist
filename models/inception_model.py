@@ -4,9 +4,10 @@ import tensorflow as tf
 class FashionInception(tf.keras.Model):
     """FashionInception net for the FashionMnist dataset"""
 
-    def __init__(self, config):
+    def __init__(self, config, include_top=True):
         super(FashionInception, self).__init__(name='FashionInception')
         self.config = config
+        self.include_top = include_top
         self._input_shape = (
             self.config['data']['image_height'],
             self.config['data']['image_width'],
@@ -31,7 +32,10 @@ class FashionInception(tf.keras.Model):
         x = self.resizing_layer(x)
         x = tf.keras.applications.inception_v3.preprocess_input(x)
         x = self.base_model(x)
-        return self.classifier(x)
+        if self.include_top:
+            return self.classifier(x)
+        else:
+            return x
 
     def add_channels(self, image):
         return tf.image.grayscale_to_rgb(image)
